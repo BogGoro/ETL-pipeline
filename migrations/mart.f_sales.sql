@@ -1,3 +1,13 @@
+WITH cur_date AS (
+    SELECT date_id
+    FROM mart.d_calendar
+    WHERE date_actual = '{{ds}}'
+)
+DELETE FROM mart.f_sales
+WHERE date_id IN (
+        SELECT date_id
+        FROM cur_date
+    );
 INSERT INTO mart.f_sales (
         date_id,
         item_id,

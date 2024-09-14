@@ -1,3 +1,13 @@
+WITH cur_week AS (
+    SELECT substr(week_of_year_iso, 1, 8) AS current_week
+    FROM mart.d_calendar
+    WHERE date_actual = '{{ds}}'
+)
+DELETE FROM mart.f_customer_retention
+WHERE period_id in (
+        SELECT current_week
+        FROM cur_week
+    );
 WITH customer_calculations AS (
     SELECT uol.customer_id AS customer_id,
         uol.item_id AS item_id,
@@ -79,4 +89,4 @@ SELECT count(
     )
 FROM customer_calculations
 GROUP BY item_id,
-    year_with_week
+    year_with_week;
