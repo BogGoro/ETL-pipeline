@@ -17,8 +17,8 @@ base_url = http_conn_id.host
 
 postgres_conn_id = 'postgresql_de'
 
-nickname = 'boggoros'
-cohort = '29'
+nickname = 'XXX'
+cohort = 'XXX'
 
 headers = {
     'X-Nickname': nickname,
@@ -121,7 +121,7 @@ business_dt = '{{ ds }}'
 with DAG(
         'sales_mart',
         default_args=args,
-        description='Provide default dag for sprint3',
+        description='Default dag',
         catchup=True,
         start_date=datetime.today() - timedelta(days=7),
         end_date=datetime.today() - timedelta(days=1),
