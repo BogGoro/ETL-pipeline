@@ -35,7 +35,7 @@ WITH customer_calculations AS (
             END
         ) AS refunds_quantity
     FROM staging.user_order_log uol
-        JOIN mart.d_calendar dc ON uol.date_time::date = dc.date_actual
+        LEFT JOIN mart.d_calendar dc ON uol.date_time::date = dc.date_actual
     GROUP BY customer_id,
         item_id,
         year_with_week
